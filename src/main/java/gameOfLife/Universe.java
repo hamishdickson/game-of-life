@@ -12,7 +12,8 @@ public class Universe {
         return cells.size();
     }
 
-    public void step() {
+    public Universe step() {
+        return new Universe();
     }
 
     public void addAliveCell(Cell aliveCell) {

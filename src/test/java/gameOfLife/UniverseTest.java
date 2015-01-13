@@ -8,9 +8,9 @@ public class UniverseTest extends TestCase {
     public void testEmptyUniverseStaysEmpty() {
         Universe universe = new Universe();
         
-        universe.step();
+        Universe universe1 = universe.step();
         
-        assertEquals(0, universe.numberOfAliveCells());
+        assertEquals(0, universe1.numberOfAliveCells());
     }
     
     @Test
@@ -33,8 +33,8 @@ public class UniverseTest extends TestCase {
         Cell aliveCell = new AliveCell(cellPosition);
         universe.addAliveCell(aliveCell);
         
-        universe.step();
+        Universe nextUniverse = universe.step();
         
-        assertEquals(0, universe.numberOfAliveCells());
+        assertEquals(0, nextUniverse.numberOfAliveCells());
     }
 }
