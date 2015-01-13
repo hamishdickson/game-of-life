@@ -25,4 +25,16 @@ public class UniverseTest extends TestCase {
         
         assertEquals(1, universe.numberOfAliveCells());
     }
+    
+    @Test
+    public void testSingleCellDiesOnStep() {
+        Universe universe = new Universe();
+        CellPosition cellPosition = new CellPosition(1, 1);
+        Cell aliveCell = new AliveCell(cellPosition);
+        universe.addAliveCell(aliveCell);
+        
+        universe.step();
+        
+        assertEquals(0, universe.numberOfAliveCells());
+    }
 }
