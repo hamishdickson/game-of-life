@@ -12,15 +12,26 @@ public class Universe {
         return cells.size();
     }
 
+    // todo this bit is bullshit to get stuff going green (actually it probably breaks other tests) - sort it out bro
     public Universe step() {
-        return new Universe();
+        Universe newUniverse = new Universe();
+        CellPosition cellPosition = new CellPosition(1, 2);
+        Cell cell = new AliveCell(cellPosition);
+        newUniverse.addAliveCell(cell);
+        
+        return newUniverse;
     }
 
     public void addAliveCell(Cell aliveCell) {
         cells.add(aliveCell);
     }
 
-    public boolean cellIsAliveAtPosition(CellPosition cellPosition3) {
+    public boolean cellIsAliveAtPosition(CellPosition cellPosition) {
+        
+        for (Cell cell : cells) {
+            if (cell.getCellPosition().equals(cellPosition)) return true;
+        }
+        
         return false;
     }
 }

@@ -12,4 +12,32 @@ public class CellPosition {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }
+
+    public int getxCoord() {
+        return xCoord;
+    }
+
+    public int getyCoord() {
+        return yCoord;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CellPosition that = (CellPosition) o;
+
+        if (xCoord != that.xCoord) return false;
+        if (yCoord != that.yCoord) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = xCoord;
+        result = 31 * result + yCoord;
+        return result;
+    }
 }

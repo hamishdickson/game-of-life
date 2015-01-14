@@ -57,4 +57,21 @@ public class UniverseTest extends TestCase {
         
         assertEquals(true, universe1.cellIsAliveAtPosition(cellPosition3));
     }
+
+    @Test
+    public void testCellWithOneLiveNeighboursDies() {
+        Universe universe = new Universe();
+        CellPosition cellPosition1 = new CellPosition(1, 1);
+        CellPosition cellPosition2 = new CellPosition(2, 1);
+
+        Cell otherCell1 = new AliveCell(cellPosition1);
+        Cell testCell = new AliveCell(cellPosition2);
+
+        universe.addAliveCell(otherCell1);
+        universe.addAliveCell(testCell);
+
+        Universe universe1 = universe.step();
+
+        assertEquals(false, universe1.cellIsAliveAtPosition(cellPosition2));
+    }
 }
