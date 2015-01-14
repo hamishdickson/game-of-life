@@ -19,4 +19,8 @@ public class Universe {
     public void addAliveCell(Cell aliveCell) {
         cells.add(aliveCell);
     }
+
+    public boolean cellIsAliveAtPosition(CellPosition cellPosition3) {
+        return false;
+    }
 }
