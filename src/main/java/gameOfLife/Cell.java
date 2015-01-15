@@ -6,4 +6,8 @@ package gameOfLife;
 public interface Cell {
     public boolean isAlive();
     public CellPosition getCellPosition();
+
+    boolean isAliveInNextStep();
+
+    int countNeighbours();
 }

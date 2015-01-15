@@ -19,4 +19,15 @@ public class AliveCell implements Cell {
     public CellPosition getCellPosition() {
         return cellPosition;
     }
+
+    @Override
+    public boolean isAliveInNextStep() {
+        int neighbours = this.countNeighbours();
+        return neighbours == 2 || neighbours == 3;
+    }
+
+    @Override
+    public int countNeighbours() {
+        return 0;
+    }
 }

@@ -12,13 +12,16 @@ public class Universe {
         return cells.size();
     }
 
-    // todo this bit is bullshit to get stuff going green (actually it probably breaks other tests) - sort it out bro
     public Universe step() {
         Universe newUniverse = new Universe();
-        CellPosition cellPosition = new CellPosition(1, 2);
-        Cell cell = new AliveCell(cellPosition);
-        newUniverse.addAliveCell(cell);
         
+        // todo only tests if current alive cells stay alive - that aint't right
+        for (Cell cell : cells) {
+            if (cell.isAliveInNextStep()) {
+                newUniverse.addAliveCell(cell);
+            }
+        }
+
         return newUniverse;
     }
 
