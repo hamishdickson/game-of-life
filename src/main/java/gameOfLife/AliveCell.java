@@ -22,12 +22,12 @@ public class AliveCell implements Cell {
 
     @Override
     public boolean isAliveInNextStep() {
-        int neighbours = this.countNeighbours();
+        int neighbours = this.countAliveNeighbours();
         return neighbours == 2 || neighbours == 3;
     }
 
     @Override
-    public int countNeighbours() {
+    public int countAliveNeighbours() {
         return 0;
     }
 }

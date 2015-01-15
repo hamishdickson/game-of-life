@@ -9,5 +9,5 @@ public interface Cell {
 
     boolean isAliveInNextStep();
 
-    int countNeighbours();
+    int countAliveNeighbours();
 }
