@@ -15,7 +15,17 @@ public class Universe {
     }
 
     public Universe iterate() {
-        return new Universe(this.grid);
+        Universe newUniverse = new Universe(this.grid);
+        for (int i = 0; i < this.grid.length; i++) {
+            for (int j = 0; j < this.grid[i].length; j++) {
+                if (this.countNeighbours(i, j) == 2 || this.countNeighbours(i, j) == 3) newUniverse.setAlive(i, j);
+            }
+        }
+        return newUniverse;
+    }
+
+    private int countNeighbours(int x, int y) {
+        return 2;
     }
 
     public boolean isCellAlive(int xCoord, int yCoord) {
