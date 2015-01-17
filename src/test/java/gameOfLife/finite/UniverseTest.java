@@ -46,4 +46,23 @@ public class UniverseTest extends TestCase {
 
         assertEquals(true, nextUniverse.isCellAlive(1, 1));
     }
+    
+    @Test
+    public void testThatToStringOutputsCorrectly() {
+        String expectedOutput = " +   \n" +
+                "+++  \n" +
+                "     \n" +
+                "     \n" +
+                "     \n";
+        
+        Universe universe = new Universe(5, 5);
+
+        universe.setAlive(0, 0);
+        universe.setAlive(1, 0);
+        universe.setAlive(2, 0);
+
+        Universe nextUniverse = universe.iterate();
+        
+        assertEquals(expectedOutput, nextUniverse.toString());
+    }
 }
