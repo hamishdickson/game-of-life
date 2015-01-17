@@ -4,13 +4,13 @@ package gameOfLife.finite;
  * Created by hamishdickson on 17/01/15.
  */
 public class Universe {
-    private int[][] grid;
+    private boolean[][] grid;
     
-    public Universe(int width, int height) {
-        this.grid = new int[width][height];
+    public Universe(int xCoord, int yCoord) {
+        this.grid = new boolean[xCoord][yCoord];
     }
 
-    public Universe(int[][] grid) {
+    public Universe(boolean[][] grid) {
         this.grid = grid;
     }
 
@@ -18,7 +18,11 @@ public class Universe {
         return new Universe(this.grid);
     }
 
-    public boolean isCellAlive(int height, int width) {
-        return false;
+    public boolean isCellAlive(int xCoord, int yCoord) {
+        return grid[xCoord][yCoord];
+    }
+
+    public void setAlive(int xCoord, int yCoord) {
+        this.grid[xCoord][yCoord] = true;
     }
 }

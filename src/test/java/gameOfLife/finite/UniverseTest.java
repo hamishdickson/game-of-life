@@ -11,8 +11,14 @@ public class UniverseTest extends TestCase {
         Universe nextUniverse = universe.iterate();
         
         assertEquals(false, nextUniverse.isCellAlive(1, 1));
-        
     }
     
-
+    @Test
+    public void testAliveCellIsAlive() {
+        Universe universe = new Universe(5, 5);
+        
+        universe.setAlive(1, 1);
+        
+        assertEquals(true, universe.isCellAlive(1, 1));
+    }
 }
