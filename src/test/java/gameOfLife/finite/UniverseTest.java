@@ -43,8 +43,6 @@ public class UniverseTest extends TestCase {
         universe.setAlive(2, 0);
         
         Universe nextUniverse = universe.iterate();
-        
-        System.out.println(nextUniverse.toString());
 
         assertEquals(true, nextUniverse.isCellAlive(1, 1));
     }
