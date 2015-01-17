@@ -22,8 +22,8 @@ public class Universe {
 
     public Universe iterate() {
         Universe newUniverse = new Universe(this.grid);
-        for (int i = 0; i < this.grid.length; i++) {
-            for (int j = 0; j < this.grid[i].length; j++) {
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
                 int numberOfNeighbours = this.countNeighbours(i, j);
                 if (numberOfNeighbours == 2 || numberOfNeighbours == 3) newUniverse.setAlive(i, j);
             }
@@ -55,5 +55,27 @@ public class Universe {
 
     public void setAlive(int xCoord, int yCoord) {
         this.grid[xCoord][yCoord] = true;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        
+        String DEAD_CELL = " ";
+        String ALIVE_CELL = "+";
+        
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                if (isCellAlive(i, j)) {
+                    sb.append(ALIVE_CELL);
+                } else {
+                    sb.append(DEAD_CELL);
+                }
+                
+                if (j == HEIGHT - 1) sb.append("\n");
+            }
+        }
+        
+        return sb.toString();
     }
 }

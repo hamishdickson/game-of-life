@@ -28,8 +28,24 @@ public class UniverseTest extends TestCase {
         universe.setAlive(0, 0);
         universe.setAlive(0, 1);
         
-        universe.iterate();
+        Universe nextUniverse = universe.iterate();
         
-        assertEquals(true, universe.isCellAlive(1, 0));
+        assertEquals(true, nextUniverse.isCellAlive(1, 0));
+    }
+
+
+
+    @Test
+    public void testCellWithThreeNeighboursLivesInNextIteration() {
+        Universe universe = new Universe(5, 5);
+        universe.setAlive(0, 0);
+        universe.setAlive(0, 1);
+        universe.setAlive(0, 2);
+        
+        Universe nextUniverse = universe.iterate();
+        
+        System.out.println(nextUniverse.toString());
+
+        assertEquals(true, nextUniverse.isCellAlive(1, 1));
     }
 }
