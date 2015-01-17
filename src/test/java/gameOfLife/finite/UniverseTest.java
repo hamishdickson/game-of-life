@@ -39,8 +39,8 @@ public class UniverseTest extends TestCase {
     public void testCellWithThreeNeighboursLivesInNextIteration() {
         Universe universe = new Universe(5, 5);
         universe.setAlive(0, 0);
-        universe.setAlive(0, 1);
-        universe.setAlive(0, 2);
+        universe.setAlive(1, 0);
+        universe.setAlive(2, 0);
         
         Universe nextUniverse = universe.iterate();
         

@@ -21,11 +21,11 @@ public class Universe {
     }
 
     public Universe iterate() {
-        Universe newUniverse = new Universe(this.grid);
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                int numberOfNeighbours = this.countNeighbours(i, j);
-                if (numberOfNeighbours == 2 || numberOfNeighbours == 3) newUniverse.setAlive(i, j);
+        Universe newUniverse = new Universe(this.WIDTH, this.HEIGHT);
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                int numberOfNeighbours = this.countNeighbours(j, i);
+                if (numberOfNeighbours == 2 || numberOfNeighbours == 3) newUniverse.setAlive(j, i);
             }
         }
         return newUniverse;
@@ -39,13 +39,13 @@ public class Universe {
             // leave as is
         }
         
-        if (y > 0 && isCellAlive(x, y-1)) count++; // top
-        if (x < WIDTH - 1 && y > 0 && isCellAlive(x+1, y-1)) count++; // top right
-        if (x > 0 && isCellAlive(x-1, y)) count++; // left
-        if (x < WIDTH - 1 && isCellAlive(x+1, y)) count++; // right
-        if (x > 0 && y < HEIGHT - 1 && isCellAlive(x-1, y+1)) count++; // bottom left
-        if (y < HEIGHT - 1 && isCellAlive(x, y+1)) count++; // bottom
-        if (x < WIDTH - 1 && y < HEIGHT - 1 && isCellAlive(x+1, y+1)) count++; // bottom right
+        if (y > 0 && this.isCellAlive(x, y-1)) count++; // top
+        if (x < WIDTH - 1 && y > 0 && this.isCellAlive(x+1, y-1)) count++; // top right
+        if (x > 0 && this.isCellAlive(x-1, y)) count++; // left
+        if (x < WIDTH - 1 && this.isCellAlive(x+1, y)) count++; // right
+        if (x > 0 && y < HEIGHT - 1 && this.isCellAlive(x-1, y+1)) count++; // bottom left
+        if (y < HEIGHT - 1 && this.isCellAlive(x, y+1)) count++; // bottom
+        if (x < WIDTH - 1 && y < HEIGHT - 1 && this.isCellAlive(x+1, y+1)) count++; // bottom right
         return count;
     }
 
@@ -64,9 +64,9 @@ public class Universe {
         String DEAD_CELL = " ";
         String ALIVE_CELL = "+";
         
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                if (isCellAlive(i, j)) {
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                if (isCellAlive(j, i)) {
                     sb.append(ALIVE_CELL);
                 } else {
                     sb.append(DEAD_CELL);
