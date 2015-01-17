@@ -1,4 +1,4 @@
-package gameOfLife;
+package gameOfLife.infinite;
 
 /**
  * Created by hamishdickson on 13/01/15.
