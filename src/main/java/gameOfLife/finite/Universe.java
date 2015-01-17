@@ -14,12 +14,6 @@ public class Universe {
         this.HEIGHT = yCoord;
     }
 
-    public Universe(boolean[][] grid) {
-        this.grid = grid;
-        this.WIDTH = grid.length;
-        this.HEIGHT = grid[0].length;
-    }
-
     public Universe iterate() {
         Universe newUniverse = new Universe(this.WIDTH, this.HEIGHT);
         for (int i = 0; i < HEIGHT; i++) {
@@ -33,12 +27,7 @@ public class Universe {
 
     private int countNeighbours(int x, int y) {
         int count = 0;
-        if (x > 0 && y > 0 && isCellAlive(x-1, y-1)) {
-            count++; // top left
-        } else {
-            // leave as is
-        }
-        
+        if (x > 0 && y > 0 && isCellAlive(x-1, y-1)) count++; // top left
         if (y > 0 && this.isCellAlive(x, y-1)) count++; // top
         if (x < WIDTH - 1 && y > 0 && this.isCellAlive(x+1, y-1)) count++; // top right
         if (x > 0 && this.isCellAlive(x-1, y)) count++; // left

@@ -33,8 +33,6 @@ public class UniverseTest extends TestCase {
         assertEquals(true, nextUniverse.isCellAlive(1, 0));
     }
 
-
-
     @Test
     public void testCellWithThreeNeighboursLivesInNextIteration() {
         Universe universe = new Universe(5, 5);
