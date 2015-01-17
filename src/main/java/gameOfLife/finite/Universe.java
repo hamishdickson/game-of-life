@@ -5,8 +5,11 @@ package gameOfLife.finite;
  */
 public class Universe {
     private boolean[][] grid;
-    private final int WIDTH;
-    private final int HEIGHT;
+    
+    public static final String ALIVE_CELL = "+";
+    private static final String DEAD_CELL = " ";
+    public final int WIDTH;
+    public final int HEIGHT;
     
     public Universe(int width, int height) {
         this.grid = new boolean[width][height];
@@ -39,39 +42,40 @@ public class Universe {
     }
 
     private boolean isBottomRightCellAlive(int x, int y) {
-        return x < WIDTH - 1 && y < HEIGHT - 1 && this.isCellAlive(x+1, y+1);
+        return isCellAlive(x + 1, y + 1);
     }
 
     private boolean isBottomCellAlive(int x, int y) {
-        return y < HEIGHT - 1 && this.isCellAlive(x, y+1);
+        return isCellAlive(x, y + 1);
     }
 
     private boolean isBottomLeftCellAlive(int x, int y) {
-        return x > 0 && y < HEIGHT - 1 && this.isCellAlive(x-1, y+1);
+        return isCellAlive(x - 1, y + 1);
     }
 
     private boolean isRightCellAlive(int x, int y) {
-        return x < WIDTH - 1 && this.isCellAlive(x+1, y);
+        return isCellAlive(x + 1, y);
     }
 
     private boolean isLeftCellAlive(int x, int y) {
-        return x > 0 && this.isCellAlive(x-1, y);
+        return isCellAlive(x - 1, y);
     }
 
     private boolean isTopRightCellAlive(int x, int y) {
-        return x < WIDTH - 1 && y > 0 && this.isCellAlive(x+1, y-1);
+        return isCellAlive(x + 1, y - 1);
     }
 
     private boolean isTopCellAlive(int x, int y) {
-        return y > 0 && this.isCellAlive(x, y-1);
+        return isCellAlive(x, y - 1);
     }
 
     private boolean isTopLeftCellAlive(int x, int y) {
-        return x > 0 && y > 0 && isCellAlive(x-1, y-1);
+        return isCellAlive(x-1, y-1);
     }
 
     public boolean isCellAlive(int xCoord, int yCoord) {
-        return grid[xCoord][yCoord];
+        CellPosition cellPosition = new CellPosition(xCoord, yCoord);
+        return cellPosition.isCellInUniverse(this) && grid[xCoord][yCoord];
     }
 
     public void setAlive(int xCoord, int yCoord) {
@@ -81,9 +85,6 @@ public class Universe {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        
-        String DEAD_CELL = " ";
-        String ALIVE_CELL = "+";
         
         for (int j = 0; j < HEIGHT; j++) {
             for (int i = 0; i < WIDTH; i++) {
