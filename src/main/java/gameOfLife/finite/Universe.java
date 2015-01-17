@@ -5,27 +5,48 @@ package gameOfLife.finite;
  */
 public class Universe {
     private boolean[][] grid;
+    private final int WIDTH;
+    private final int HEIGHT;
     
     public Universe(int xCoord, int yCoord) {
         this.grid = new boolean[xCoord][yCoord];
+        this.WIDTH = xCoord;
+        this.HEIGHT = yCoord;
     }
 
     public Universe(boolean[][] grid) {
         this.grid = grid;
+        this.WIDTH = grid.length;
+        this.HEIGHT = grid[0].length;
     }
 
     public Universe iterate() {
         Universe newUniverse = new Universe(this.grid);
         for (int i = 0; i < this.grid.length; i++) {
             for (int j = 0; j < this.grid[i].length; j++) {
-                if (this.countNeighbours(i, j) == 2 || this.countNeighbours(i, j) == 3) newUniverse.setAlive(i, j);
+                int numberOfNeighbours = this.countNeighbours(i, j);
+                if (numberOfNeighbours == 2 || numberOfNeighbours == 3) newUniverse.setAlive(i, j);
             }
         }
         return newUniverse;
     }
 
     private int countNeighbours(int x, int y) {
-        return 2;
+        int count = 0;
+        if (x > 0 && y > 0 && isCellAlive(x-1, y-1)) {
+            count++; // top left
+        } else {
+            // leave as is
+        }
+        
+        if (y > 0 && isCellAlive(x, y-1)) count++; // top
+        if (x < WIDTH - 1 && y > 0 && isCellAlive(x+1, y-1)) count++; // top right
+        if (x > 0 && isCellAlive(x-1, y)) count++; // left
+        if (x < WIDTH - 1 && isCellAlive(x+1, y)) count++; // right
+        if (x > 0 && y < HEIGHT - 1 && isCellAlive(x-1, y+1)) count++; // bottom left
+        if (y < HEIGHT - 1 && isCellAlive(x, y+1)) count++; // bottom
+        if (x < WIDTH - 1 && y < HEIGHT - 1 && isCellAlive(x+1, y+1)) count++; // bottom right
+        return count;
     }
 
     public boolean isCellAlive(int xCoord, int yCoord) {
