@@ -27,15 +27,47 @@ public class Universe {
 
     private int countNeighbours(int x, int y) {
         int count = 0;
-        if (x > 0 && y > 0 && isCellAlive(x-1, y-1)) count++; // top left
-        if (y > 0 && this.isCellAlive(x, y-1)) count++; // top
-        if (x < WIDTH - 1 && y > 0 && this.isCellAlive(x+1, y-1)) count++; // top right
-        if (x > 0 && this.isCellAlive(x-1, y)) count++; // left
-        if (x < WIDTH - 1 && this.isCellAlive(x+1, y)) count++; // right
-        if (x > 0 && y < HEIGHT - 1 && this.isCellAlive(x-1, y+1)) count++; // bottom left
-        if (y < HEIGHT - 1 && this.isCellAlive(x, y+1)) count++; // bottom
-        if (x < WIDTH - 1 && y < HEIGHT - 1 && this.isCellAlive(x+1, y+1)) count++; // bottom right
+        if (isTopLeftCellAlive(x, y)) count++;
+        if (isTopCellAlive(x, y)) count++;
+        if (isTopRightCellAlive(x, y)) count++;
+        if (isLeftCellAlive(x, y)) count++;
+        if (isRightCellAlive(x, y)) count++;
+        if (isBottomLeftCellAlive(x, y)) count++;
+        if (isBottomCellAlive(x, y)) count++;
+        if (isBottomRightCellAlive(x, y)) count++;
         return count;
+    }
+
+    private boolean isBottomRightCellAlive(int x, int y) {
+        return x < WIDTH - 1 && y < HEIGHT - 1 && this.isCellAlive(x+1, y+1);
+    }
+
+    private boolean isBottomCellAlive(int x, int y) {
+        return y < HEIGHT - 1 && this.isCellAlive(x, y+1);
+    }
+
+    private boolean isBottomLeftCellAlive(int x, int y) {
+        return x > 0 && y < HEIGHT - 1 && this.isCellAlive(x-1, y+1);
+    }
+
+    private boolean isRightCellAlive(int x, int y) {
+        return x < WIDTH - 1 && this.isCellAlive(x+1, y);
+    }
+
+    private boolean isLeftCellAlive(int x, int y) {
+        return x > 0 && this.isCellAlive(x-1, y);
+    }
+
+    private boolean isTopRightCellAlive(int x, int y) {
+        return x < WIDTH - 1 && y > 0 && this.isCellAlive(x+1, y-1);
+    }
+
+    private boolean isTopCellAlive(int x, int y) {
+        return y > 0 && this.isCellAlive(x, y-1);
+    }
+
+    private boolean isTopLeftCellAlive(int x, int y) {
+        return x > 0 && y > 0 && isCellAlive(x-1, y-1);
     }
 
     public boolean isCellAlive(int xCoord, int yCoord) {
