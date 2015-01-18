@@ -22,7 +22,11 @@ public class Universe {
         for (int j = 0; j < HEIGHT; j++) {
             for (int i = 0; i < WIDTH; i++) {
                 int numberOfNeighbours = this.countNeighbours(i, j);
-                if (numberOfNeighbours == 2 || numberOfNeighbours == 3) newUniverse.setAlive(i, j);
+                if (isCellAlive(i, j)) {
+                    if (numberOfNeighbours == 2 || numberOfNeighbours == 3) newUniverse.setAlive(i, j);
+                } else {
+                    if (numberOfNeighbours == 3) newUniverse.setAlive(i, j);
+                }
             }
         }
         return newUniverse;
