@@ -59,6 +59,45 @@ public class UniverseTest extends TestCase {
     }
 
     @Test
+    public void testDeadCellWithTwoLiveNeighboursIsNotBorn() {
+        Universe universe = new Universe();
+        CellPosition cellPosition1 = new CellPosition(1, 1);
+        CellPosition cellPosition2 = new CellPosition(2, 1);
+        CellPosition deadCellPosition = new CellPosition(1, 2);
+
+        Cell otherCell1 = new AliveCell(cellPosition1);
+        Cell otherCell2 = new AliveCell(cellPosition2);
+
+        universe.addAliveCell(otherCell1);
+        universe.addAliveCell(otherCell2);
+
+        Universe universe1 = universe.step();
+
+        assertEquals(false, universe1.cellIsAliveAtPosition(deadCellPosition));
+    }
+
+    @Test
+    public void testDeadCellWithThreeLiveNeighboursIsBorn() {
+        Universe universe = new Universe();
+        CellPosition cellPosition1 = new CellPosition(1, 1);
+        CellPosition cellPosition2 = new CellPosition(2, 1);
+        CellPosition cellPosition3 = new CellPosition(2, 1);
+        CellPosition deadCellPosition = new CellPosition(1, 2);
+
+        Cell otherCell1 = new AliveCell(cellPosition1);
+        Cell otherCell2 = new AliveCell(cellPosition2);
+        Cell otherCell3 = new AliveCell(cellPosition3);
+
+        universe.addAliveCell(otherCell1);
+        universe.addAliveCell(otherCell2);
+        universe.addAliveCell(otherCell3);
+
+        Universe universe1 = universe.step();
+
+        assertEquals(true, universe1.cellIsAliveAtPosition(deadCellPosition));
+    }
+
+    @Test
     public void testCellWithOneLiveNeighboursDies() {
         Universe universe = new Universe();
         CellPosition cellPosition1 = new CellPosition(1, 1);
