@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/hamishdickson/game-of-life.svg?branch=master)](https://travis-ci.org/hamishdickson/game-of-life)
-
 Conway's Game of Life
 =====================
 
